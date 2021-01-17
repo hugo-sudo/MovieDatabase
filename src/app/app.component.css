@@ -1,0 +1,86 @@
+/*Styles for the main page*/
+.search-container {
+    position:relative;
+    align-items: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-20%,-50%);
+}
+
+.homepage {
+    background-image: url(../assets/images/homepage2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: auto;
+    height: 937px;
+    overflow: hidden;
+}
+.search-box {
+    border-radius: 5px;
+    height: 50px;
+    width: 800px;
+    color: black;
+    padding: 0px 10px;
+    font-size: 15px;
+    outline: none;
+    border: none;
+}
+
+.btn {
+    position: absolute;
+    color: darkgray;
+    float: right;
+    border-radius: 50px;
+    width: 15px;
+    height: 15px;
+    left: 780px;
+    top: 8px;
+}
+
+.btn-slide {
+    position: relative;
+    left: 450px;
+    bottom: 18px;
+    color: darkgray;
+}
+.results-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+}
+
+.title-container {
+    grid-column-start: 1;
+    grid-column-end: 2;
+}
+.date-container {
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+.director-container {
+    grid-column-start: 3;
+    grid-column-end: 4;
+}
+.actors-container {
+    grid-column-start: 4;
+    grid-column-end: 5;
+}
+
+.slide-container {
+    display: grid;
+    grid-template-columns: max-content;
+    border: black;
+}
+.slide{
+    position: relative;
+    height: 500px;
+    width: 1000px;
+    border: black;
+    text-align: center;
+    border-style: double;
+    left: 50%;
+    top: 40px;
+    align-content: center;
+    justify-content: center;
+    font-size: 50px;
+    font-weight: 500;
+}

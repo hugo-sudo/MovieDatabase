@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
+  <title>Movie Web App</title>
+</head>
+<body>
+   <section class="homepage">
+     <div class="search-container">
+       <input type="text" class="search-box" id="name" placeholder="Search for an actor or a director... ">
+       <a href="#results" class="btn"><i class="fas fa-search fa-2x" (click)= allInfo()></i></a>
+     </div>
+   </section>
+   <section class="results" id="results">
+     <h1 class="title-results">Search Results</h1>
+     <p class="">Click the camera button to see results in a slide presentation</p>
+     <a href="#slideshow" class="btn-slide"><i class="fas fa-video"></i></a>
+     <br>
+     <div class="results-container">
+       <div class="title-container">
+        <h3 class="">Title</h3>
+        <li *ngFor="let movie of data" style="list-style-type: none;">
+          <p class="movie-title" style="padding-top: 5px;">{{ movie.title }}</p>
+        </li>
+       </div>
+       <div class="date-container">
+        <h3 class="">Release Date</h3>
+        <li *ngFor="let movie of data" style="list-style-type: none;">
+          <p class="movie-date" style="padding-top: 5px;">{{ movie.release_date }}</p>
+        </li>
+       </div>
+       <div class="director-container">
+        <h3 class="">Director</h3>
+        <li *ngFor="let director of movieDirector" style="list-style-type: none;">
+          <p class="movie-director" style="padding-top: 5px;">{{ director.name }}</p>
+        </li>
+       </div>
+       <div class="actors-container">
+        <h3 class="">Main Cast</h3>
+        <li *ngFor="let actors of actors; let i=index" style="list-style-type: none;">
+          <p class="movie-director" style="padding-top: 5px;">{{ actors[0] }},{{ actors[1] }},{{ actors[2] }}</p>
+        </li>
+       </div>
+     </div>
+   </section>
+   <br>
+   <section class="slideshow" id="slideshow">
+     <h1>Slide Presentantion</h1>
+     <div *ngFor="let movie of data, let i=index" class="slide-container" style="list-style-type: none;">
+      <div class="slide">
+        <p class="">Title: {{ movie.title }}</p>
+        <p class="">Release Date: {{ movie.release_date }}</p>
+        <p class="">Director: {{ movieDirector[i].name }}</p>
+      </div> 
+     </div>
+   </section>
+</body>
+</html>
+
+
+<router-outlet></router-outlet>
