@@ -51,6 +51,7 @@
 .title-container {
     grid-column-start: 1;
     grid-column-end: 2;
+    border: black;
 }
 .date-container {
     grid-column-start: 2;

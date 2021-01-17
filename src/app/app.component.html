@@ -23,24 +23,31 @@
         <h3 class="">Title</h3>
         <li *ngFor="let movie of data" style="list-style-type: none;">
           <p class="movie-title" style="padding-top: 5px;">{{ movie.title }}</p>
+          <hr>
         </li>
        </div>
        <div class="date-container">
         <h3 class="">Release Date</h3>
         <li *ngFor="let movie of data" style="list-style-type: none;">
-          <p class="movie-date" style="padding-top: 5px;">{{ movie.release_date }}</p>
+          <!-- <p class="movie-date" style="padding-top: 5px;">{{ movie.release_date }}</p> -->
+          <p style="padding-top: 5px" *ngIf="movie.release_date === undefined">Not Found</p>
+          <p style="padding-top: 5px" *ngIf="movie.release_date.length==0">Not Found</p>
+          <p style="padding-top: 5px" *ngIf="movie.release_date">{{ movie.release_date }}</p>
+          <hr>
         </li>
        </div>
        <div class="director-container">
         <h3 class="">Director</h3>
         <li *ngFor="let director of movieDirector" style="list-style-type: none;">
           <p class="movie-director" style="padding-top: 5px;">{{ director.name }}</p>
+          <hr>
         </li>
        </div>
        <div class="actors-container">
         <h3 class="">Main Cast</h3>
         <li *ngFor="let actors of actors; let i=index" style="list-style-type: none;">
           <p class="movie-director" style="padding-top: 5px;">{{ actors[0] }},{{ actors[1] }},{{ actors[2] }}</p>
+          <hr>
         </li>
        </div>
      </div>
