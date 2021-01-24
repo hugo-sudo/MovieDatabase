@@ -7,7 +7,63 @@
   <title>Movie Web App</title>
 </head>
 <body>
-   <section class="homepage">
+  <main>
+    <section class="glass">
+        <div class="search-bar">
+            <input type="text" id="name" class="search" placeholder="Search for an actor or director...">
+            <a class="btn"><i class="fas fa-search" (click)= allInfo()></i></a>
+        </div>
+        <div class="slidebtn-container">
+          <p class="result-grid" style="padding-right: 2rem;padding-left: 3rem;">Click the camera button to see results in a slide presentation</p>
+          <a href="#slideshow" class="btn-slide" style="color: #303030;"><i class="fas fa-video"></i></a>
+        </div>
+        <div class="results-container" id="result-table">
+          <div class="title-container">
+           <h2 class="">Title</h2>
+           <li *ngFor="let movie of data" style="list-style-type: none;">
+             <p class="result-grid" style="padding-top: 5px;">{{ movie.title }}</p>
+             <hr>
+           </li>
+          </div>
+          <div class="date-container">
+           <h2 class="">Release Date</h2>
+           <li *ngFor="let movie of data" style="list-style-type: none;">
+             <p class="result-grid" style="padding-top: 5px" *ngIf="movie.release_date === undefined">Not Found</p>
+             <p class="result-grid" style="padding-top: 5px" *ngIf="movie.release_date.length==0">Not Found</p>
+             <p class="result-grid" style="padding-top: 5px" *ngIf="movie.release_date">{{ movie.release_date }}</p>
+             <hr>
+           </li>
+          </div>
+          <div class="director-container">
+           <h2 class="">Director</h2>
+           <li *ngFor="let director of movieDirector" style="list-style-type: none;">
+             <p class="result-grid" style="padding-top: 5px;">{{ director.name }}</p>
+             <hr>
+           </li>
+          </div>
+          <div class="actors-container">
+           <h2 class="">Main Cast</h2>
+           <li *ngFor="let actors of actors; let i=index" style="list-style-type: none;">
+             <p class="result-grid" style="padding-top: 5px;">{{ actors[0] }},{{ actors[1] }},{{ actors[2] }}</p>
+             <hr>
+           </li>
+          </div>
+        </div>
+    </section>
+    <br>
+    <section class="slideshow" id="slideshow">
+      <h1 class="slide-title">Slide Presentantion</h1>
+      <br>
+      <div *ngFor="let movie of data, let i=index" class="slide-container" style="list-style-type: none;">
+        <div class="slide">
+          <p class="">Title: {{ movie.title }}</p>
+          <p class="">Release Date: {{ movie.release_date }}</p>
+          <p class="">Director: {{ movieDirector[i].name }}</p>
+        </div> 
+      </div>
+    </section>
+  </main>
+   <!-- <section class="homepage">
      <div class="search-container">
        <input type="text" class="search-box" id="name" placeholder="Search for an actor or a director... ">
        <a href="#results" class="btn"><i class="fas fa-search fa-2x" (click)= allInfo()></i></a>
@@ -15,8 +71,7 @@
    </section>
    <section class="results" id="results">
      <h1 class="title-results">Search Results</h1>
-     <p class="">Click the camera button to see results in a slide presentation</p>
-     <a href="#slideshow" class="btn-slide"><i class="fas fa-video"></i></a>
+     
      <br>
      <div class="results-container">
        <div class="title-container">
@@ -29,7 +84,7 @@
        <div class="date-container">
         <h3 class="">Release Date</h3>
         <li *ngFor="let movie of data" style="list-style-type: none;">
-          <!-- <p class="movie-date" style="padding-top: 5px;">{{ movie.release_date }}</p> -->
+          <p class="movie-date" style="padding-top: 5px;">{{ movie.release_date }}</p>
           <p style="padding-top: 5px" *ngIf="movie.release_date === undefined">Not Found</p>
           <p style="padding-top: 5px" *ngIf="movie.release_date.length==0">Not Found</p>
           <p style="padding-top: 5px" *ngIf="movie.release_date">{{ movie.release_date }}</p>
@@ -62,7 +117,7 @@
         <p class="">Director: {{ movieDirector[i].name }}</p>
       </div> 
      </div>
-   </section>
+   </section> -->
 </body>
 </html>
 

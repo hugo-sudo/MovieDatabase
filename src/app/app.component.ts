@@ -27,15 +27,14 @@ export class AppComponent {
     this.movieCast = [];
     this.actors=[];
     this.searchResults();
-    
   }
+
   searchResults() {
+    this.showResults();
     let search = (document.getElementById("name") as HTMLInputElement).value;
       this.api1.searchResults(search).subscribe((res) => {
-
         if(res["results"][0].known_for_department == "Directing") {
           this.api1.getMovies((res["results"][0].id).toString()).subscribe((res) => {
-
             for (let index = 0; index < res["crew"].length; index++) {
               if(res["crew"][index].job == "Director") {
                 this.movies.push(res["crew"][index]);
@@ -49,11 +48,8 @@ export class AppComponent {
                 } else{
                   this.movieDirector.push(res["crew"].find((item: { job: string; }) => item.job == "Director"));
                 }
-
               })
-              
             };
-  
            for (let movie = 0; movie < this.movies.length; movie++) {
              this.actors.push([]);
                 this.api1.getMovieCast((this.movies[movie].id).toString()).subscribe((res) => {
@@ -61,18 +57,13 @@ export class AppComponent {
                     if((res["cast"][actor].name !== undefined)) {
                       this.actors[movie].push(res["cast"][actor].name);
                     }
-                    
                   }
-
                 }) 
- 
             }
-
           })
         } else {
         this.api1.getMovies((res["results"][0].id).toString()).subscribe((res) => {
           this.movies = res["cast"];
-          
           let i = this.movies[9].id;
           for (let index = 0; index <this.movies.length; index++) {
             this.api1.getMovieCast((this.movies[index].id).toString()).subscribe((res) => {
@@ -83,9 +74,7 @@ export class AppComponent {
                 this.movieDirector.push(res["crew"].find((item: { job: string; }) => item.job == "Director"));
               }
             })
-            
           };
-
          for (let movie = 0; movie < this.movies.length; movie++) {
            this.actors.push([]);
               this.api1.getMovieCast((this.movies[movie].id).toString()).subscribe((res) => {
@@ -96,16 +85,29 @@ export class AppComponent {
                   
                 }
               }) 
-              
-          
-            
           }
-          
-          
         })
         }
       });
   }
 
-  
+  //Experimental function to hide titles until search button is pressed. Working but with bug
+  showResults() {
+    /* let x = document.getElementById("result-table");
+    let y = document.getElementById("slideshow");
+    let z = document.getElementById("slidebtn-container");
+    if (x!= null && y!= null && z!= null) {
+      if (x.style.display === "none" && y.style.display=== "none" && z.style.display=== "none") {
+        x.style.display = "grid";
+        y.style.display = "block";
+        z.style.display = "block";
+      } else {
+        x.style.display = "none";
+        y.style.display = "none";
+        z.style.display = "none";
+      }
+    }
+    }
+     */
+  }
 }
